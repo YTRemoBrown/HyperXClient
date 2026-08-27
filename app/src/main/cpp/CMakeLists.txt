@@ -9,10 +9,22 @@ add_library(
     native-lib.cpp
 
     core/Client.cpp
+    core/Logger.cpp
+    core/EventBus.cpp
 )
 
 target_include_directories(
     HyperXClient
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+find_library(
+    log-lib
+    log
+)
+
+target_link_libraries(
+    HyperXClient
+    ${log-lib}
 )
