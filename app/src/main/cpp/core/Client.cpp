@@ -1,3 +1,5 @@
+#include "HookManager.hpp"
+#include "ModuleManager.hpp"
 #include "Client.hpp"
 #include "Logger.hpp"
 #include "EventBus.hpp"
@@ -23,9 +25,9 @@ void Client::initialize() {
         Logger::info("HyperX Client initialized");
     });
 
+    HookManager::instance().initialize();
+
     EventBus::instance().emit("client_initialized");
 
     hyperx::api::Client::initialize();
-}
-
 }
