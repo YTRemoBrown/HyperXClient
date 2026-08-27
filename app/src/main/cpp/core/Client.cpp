@@ -14,7 +14,8 @@ const char* Client::getName() {
     return "HyperX Client";
 }
 
-}
+} // namespace hyperx::api
+
 
 namespace hyperx::core {
 
@@ -31,3 +32,5 @@ void Client::initialize() {
 
     hyperx::api::Client::initialize();
 }
+
+} // namespace hyperx::core
