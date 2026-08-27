@@ -23,16 +23,20 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK
+      - name: Install Android SDK and NDK
         run: |
           sdkmanager "platforms;android-35"
           sdkmanager "build-tools;35.0.0"
+          sdkmanager "cmake;3.22.1"
+          sdkmanager "ndk;28.1.13356709"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build APK
-        run: gradle assembleDebug
+        run: |
+          gradle assembleDebug \
+            -Pandroid.injected.ndkVersion=28.1.13356709
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
