@@ -11,6 +11,8 @@ add_library(
     core/Client.cpp
     core/Logger.cpp
     core/EventBus.cpp
+    core/HookManager.cpp
+    core/ModuleManager.cpp
 )
 
 target_include_directories(
