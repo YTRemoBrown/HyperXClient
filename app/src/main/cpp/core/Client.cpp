@@ -1,4 +1,6 @@
 #include "Client.hpp"
+#include "Logger.hpp"
+#include "EventBus.hpp"
 #include "../api/Client.hpp"
 
 namespace hyperx::api {
@@ -15,6 +17,14 @@ const char* Client::getName() {
 namespace hyperx::core {
 
 void Client::initialize() {
+    Logger::info("Initializing HyperX Client");
+
+    EventBus::instance().subscribe("client_initialized", []() {
+        Logger::info("HyperX Client initialized");
+    });
+
+    EventBus::instance().emit("client_initialized");
+
     hyperx::api::Client::initialize();
 }
 
